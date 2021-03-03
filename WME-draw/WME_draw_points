@@ -1,0 +1,29 @@
+
+
+function WME_draw_points(X,varargin)
+
+dim = length(X(1,:));
+inputPara = varargin;
+
+switch dim
+    case 3
+        figure;
+        h = scatter3(X(:,1), X(:,2), X(:,3), 'filled');
+        h.MarkerFaceColor = [0,0,0];
+        h.SizeData = 12;
+        grid off
+        axis off
+        axis tight
+        view(-45,60)
+
+        inputLength = length(inputPara);
+            
+        while inputLength >= 2
+            state
+        switch inputPara 
+
+figure;
+scatter(X(:,1),X(:,2),10,curv,'filled');
+axis equal
+axis off
+colorbar
