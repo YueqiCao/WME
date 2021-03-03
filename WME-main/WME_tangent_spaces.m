@@ -23,8 +23,8 @@
 function [tgtBasis, nomBasis] = WME_tangent_spaces(X,m,varargin)
 
 [N,d] = size(X);
-fprintf('The point cloud consists of %d points sampled from %d dimensional Euclidean space\n', ...
-        N,d);
+fprintf('The point cloud consists of %d points sampled from %d dim submanifold in %d dim Euclidean space\n', ...
+        N,m,d);
 
 tgtBasis = zeros(d,m,N);
 nomBasis = zeros(d,d-m,N);
@@ -40,8 +40,9 @@ if isempty(varargin) == 0
                 S(1,:)=[];
                 [U,L,V] = svd(S,'econ');
                 singValues = diag(L);
-                if sum(singValues(1:m))/sum(singValues) < 0.8
-                    warning('kNN parameter fails to give good estimation of intrinsic dimension');
+                ratio = sum(singValues(1:m))/sum(singValues);
+                if  ratio < 0.7
+                    warning('may improve intrinsic dimension estimation, ratio = %.2f', ratio);
                 end
                 tgtBasis(:,:,i) = V(:,1:m);
                 nomBasis(:,:,i) = V(:,m+1:d);
@@ -56,12 +57,13 @@ else
     [IDX,Distance]=knnsearch(X,X,'K',defaultK+1);
     for i = 1:N
     S = X(IDX(i,:),:);
-    S = S-ones(K+1,1)*S(1,:);
+    S = S-ones(defaultK+1,1)*S(1,:);
     S(1,:)=[];
     [U,L,V] = svd(S,'econ');
     singValues = diag(L);
-        if sum(singValues(1:m))/sum(singValues) < 0.8
-            warning('kNN parameter fails to give good estimation of intrinsic dimension');
+    ratio = sum(singValues(1:m))/sum(singValues);
+        if  ratio < 0.7
+            warning('may improve intrinsic dimension estimation, ratio = %.2f', ratio);
         end
     tgtBasis(:,:,i) = V(:,1:m);
     nomBasis(:,:,i) = V(:,m+1:d);
