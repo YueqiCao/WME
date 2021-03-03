@@ -18,6 +18,7 @@
 % meanCurv
 %
 % author: Yueqi Cao
+% github: https://github.com/YueqiCao/WME.git
 % contact: bityueqi@gmail.com
 % homepage: yueqihome.site
 
