@@ -1,6 +1,6 @@
 % add all files to matlab path
 
-clc;
 clear;
+clc;
 
 addpath(genpath(pwd));

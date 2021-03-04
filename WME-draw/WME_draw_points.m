@@ -3,7 +3,7 @@
 %
 % WME_draw_points(X) displays points at locations specified by the row
 % vectors of X. Inline functions scatter/scatter3 are used according to
-% the row dimension of X. Default color is black.
+% the row dimension of X. Default color is given by the last coordinates.
 %
 % WME_draw_points(X, ...) displays points while showing properties
 % specified by various (unordered) inputs: 
@@ -26,7 +26,7 @@
 % [X, nom, gauss, mean] = WME_torus(1e4, 5, 2);
 % WME_draw_points(X,'curv',gauss,'save','example.pdf');
 %
-% See also scatter3, exportgraphics
+% See also scatter, scatter3, exportgraphics
 %
 % author: Yueqi Cao
 % github: https://github.com/YueqiCao/WME.git
@@ -67,9 +67,9 @@ switch dim
                     value(value > CMin+3/4*interval) = CMax;
                     value(value < CMin+1/4*interval) = CMin;
                     h.CData = value;
-                case 'MarkerSize'
+                case 'markerSize'
                     h.SizeData = value;
-                case 'Alpha'
+                case 'alpha'
                     h.AlphaData = value;
                 case 'view'
                     view(value);
@@ -108,9 +108,9 @@ switch dim
                     value(value > CMin+3/4*interval) = CMax;
                     value(value < CMin+1/4*interval) = CMin;
                     h.CData = value;
-                case 'MarkerSize'
+                case 'markerSize'
                     h.SizeData = value;
-                case 'Alpha'
+                case 'alpha'
                     h.AlphaData = value;
                 case 'colormap'
                     mycolor = acc_colormap(value);
