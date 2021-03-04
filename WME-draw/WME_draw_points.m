@@ -50,7 +50,8 @@ switch dim
         axis tight
         mycolor = acc_colormap('cmo_thermal');
         colormap(mycolor);
-        colorbar
+        colorbarh = colorbar;
+        colorbarh.Ruler.TickLabelFormat = '%.1f';
         view(-45,60)
 
         while length(inputPara) >= 2
@@ -83,7 +84,7 @@ switch dim
         end
     case 2
         figure;
-        h = scatter2(X(:,1), X(:,2), 'filled');
+        h = scatter(X(:,1), X(:,2), 'filled');
         h.CDataMode = 'manual';
         h.CData = X(:,2);
         h.SizeData = 12;
@@ -92,7 +93,8 @@ switch dim
         axis tight
         mycolor = acc_colormap('cmo_thermal');
         colormap(mycolor);
-        colorbar
+        colorbarh = colorbar;
+        colorbarh.Ruler.TickLabelFormat = '%.1f';
 
         while length(inputPara) >= 2
             state = inputPara{1};

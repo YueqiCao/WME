@@ -11,7 +11,7 @@
 % 
 % 'color': color of arrows.
 %
-% 'scale': scaling the length of arrow. 0 stands for no scaling.
+% 'scale': scaling the length of arrow. 
 %
 % 'linewidth': width of arrows.
 %
@@ -44,6 +44,7 @@ switch dim
         h.AutoScaleFactor = 1.5;
         h.LineWidth = 0.75;
         h.AlignVertexCenters = 'on';
+        axis equal % tight axis will show stretched normals
 
         while length(inputPara) >= 2
             state = inputPara{1};
@@ -73,6 +74,7 @@ switch dim
         h.AutoScaleFactor = 1.5;
         h.LineWidth = 0.75;
         h.AlignVertexCenters = 'on';
+        axis equal
 
         while length(inputPara) >= 2
             state = inputPara{1};
