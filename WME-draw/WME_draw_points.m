@@ -18,6 +18,9 @@
 % 'colormap': followed by a string specifying the colormap in
 % matlab_colormaps-master file.
 %
+% 'colorbar': followed by a string specifying the ticklable. for example:
+% '%.2f'
+%
 % 'save': followed by a string representing the title and type of the image
 % you want to save. Matlab version should be 2020 or higher.
 %
@@ -46,13 +49,10 @@ switch dim
         h.CData = X(:,3);
         h.SizeData = 12;
         grid off
-        axis off
-        axis tight
+        axis off equal 
         mycolor = acc_colormap('cmo_thermal');
         colormap(mycolor);
-        colorbarh = colorbar;
-        colorbarh.Ruler.TickLabelFormat = '%.1f';
-        view(-45,60)
+        view(-45,45)
 
         while length(inputPara) >= 2
             state = inputPara{1};
@@ -77,6 +77,9 @@ switch dim
                 case 'colormap'
                     mycolor = acc_colormap(value);
                     colormap(mycolor);
+                case 'colorbar'
+                    colorbarh = colorbar;
+                    colorbarh.Ruler.TickLabelFormat = value;
                 case 'save'
                     f = gcf;
                     exportgraphics(f,value,'BackgroundColor','none');
@@ -89,12 +92,9 @@ switch dim
         h.CData = X(:,2);
         h.SizeData = 12;
         grid off
-        axis off
-        axis tight
+        axis off equal
         mycolor = acc_colormap('cmo_thermal');
         colormap(mycolor);
-        colorbarh = colorbar;
-        colorbarh.Ruler.TickLabelFormat = '%.1f';
 
         while length(inputPara) >= 2
             state = inputPara{1};
@@ -117,6 +117,9 @@ switch dim
                 case 'colormap'
                     mycolor = acc_colormap(value);
                     colormap(mycolor);
+                case 'colorbar'
+                    colorbarh = colorbar;
+                    colorbarh.Ruler.TickLabelFormat = value;
                 case 'save'
                     f = gcf;
                     exportgraphics(f,value,'BackgroundColor','none');
