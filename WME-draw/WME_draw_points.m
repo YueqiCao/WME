@@ -11,7 +11,7 @@
 % 'curv': followed by a column vector with the same size as the columns of
 % X. The points are then colored according to the vector.
 %
-% 'enhanced': same as 'curv' but the contrast of color is improved.
+% 'enhanced': use histeq to enhance the contrast of color.
 %
 % 'view': followed by [az, el]. Adjust the view of figure.
 %
@@ -62,12 +62,8 @@ switch dim
                 case 'curv'
                     h.CData = value;
                 case 'enhanced'
-                    CMax = max(value);
-                    CMin = min(value);
-                    interval = CMax - CMin;
-                    value(value > CMin+3/4*interval) = CMax;
-                    value(value < CMin+1/4*interval) = CMin;
-                    h.CData = value;
+                    enhanced = histeq(value);
+                    h.CData = enhanced;
                 case 'markerSize'
                     h.SizeData = value;
                 case 'alpha'
