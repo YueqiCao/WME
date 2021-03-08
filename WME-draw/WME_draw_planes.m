@@ -1,5 +1,5 @@
 %% WME_draw_planes
-% draw tangent planes on point clouds
+% Draw tangent planes on point clouds
 %
 % WME_draw_planes(X, nom, position, size) draw tangent plane at the point
 % specified by position:

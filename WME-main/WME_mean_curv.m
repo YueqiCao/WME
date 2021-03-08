@@ -1,5 +1,5 @@
 %% WME_mean_curv
-% estimate the mean curvature field for submanifold point cloud X
+% Estimate the mean curvature field for submanifold point cloud X
 %
 % meanCurvVec = WME_mean_curv(X, intDim) produces a matrix fo the same size
 % as X representing the mean curvature field on X.

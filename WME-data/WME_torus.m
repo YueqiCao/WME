@@ -1,5 +1,5 @@
 %% WME_torus
-% generate random points from 2-dim torus 
+% Generate random points from 2-dim torus 
 %
 % X = WME_torus(N) produces an N*3 matrix X whose row vectors are
 % points on a torus with default major radius 4 and minor radius 0.5

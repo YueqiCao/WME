@@ -1,5 +1,5 @@
 %% WME_ellipsoid
-% generate random points from ellipsoids of various dimension 
+% Generate random points from ellipsoids of various dimension 
 %
 % X = WME_ellipsoid(N, dim) produces an N*(dim+1) matrix X whose row vectors are
 % points on a dim dimensional unit sphere embedded in a dim+1 Euclidean space

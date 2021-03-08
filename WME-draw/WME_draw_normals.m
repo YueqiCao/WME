@@ -1,5 +1,5 @@
 %% WME_draw_normals
-% visualize normal vector fields using quiver(quiver3) function
+% Visualize normal vector fields using quiver(quiver3) function
 %
 % WME_draw_normals(X, nom) displays normal vectors specified by nom 
 % at locations specified by the row vectors of X. Inline functions

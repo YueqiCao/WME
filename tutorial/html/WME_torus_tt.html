@@ -1,0 +1,165 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>WME_torus</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-03-07"><meta name="DC.source" content="WME_torus_tt.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>WME_torus</h1><!--introduction--><p>Generate random points from 2-dim torus</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#5">Contact</a></li></ul></div><h2 id="1">Syntax</h2><div><ul><li><tt>X = WME_torus(N)</tt></li><li><tt>X = WME_torus(N, majorRad, minorRad)</tt></li><li><tt>[X, nomVec] = WME_torus(N,...)</tt></li><li><tt>[X, nomVec, gaussCurv] = WME_torus(N,...)</tt></li><li><tt>[X, nomVec, gaussCurv, meanCurv] = WME_torus(N,...)</tt></li></ul></div><h2 id="2">Description</h2><div><ul><li><tt>X = WME_torus(N)</tt> produces an <tt>N*3</tt> matrix <tt>X</tt> whose row vectors are points on a torus with default major radius 4 and minor radius 0.5</li><li><tt>X = WME_torus(N, majorRad, minorRad)</tt> produces points but also specifies the major and minor radius of the torus</li><li><tt>[X, nomVec] = WME_torus(N,...)</tt> produces points <tt>X</tt> together with normal vectors <tt>nomVec</tt></li><li><tt>[X, nomVec, gaussCurv] = WME_torus(N,...)</tt> produces points <tt>X</tt>, normal vectors <tt>nomVec</tt> and Gauss curvature <tt>gaussCurv</tt></li><li><tt>[X, nomVec, gaussCurv, meanCurv] = WME_torus(N,...)</tt> produces points <tt>X</tt>, normal vectors <tt>nomVec</tt>, Gauss curvature <tt>gaussCurv</tt>, and mean curvature <tt>meanCurv</tt></li></ul></div><h2 id="3">Example</h2><pre class="codeinput">X = WME_torus(10)
+</pre><pre class="codeoutput">
+X =
+
+   -0.1249   -4.3478    0.3575
+    3.3118    2.7011   -0.4185
+    4.4168   -0.2069   -0.2687
+   -3.5579    0.3101   -0.2575
+   -3.5676   -2.7013   -0.1564
+    0.9287   -3.5494    0.3746
+   -1.6635    3.1724    0.2745
+    1.3491   -4.2930   -0.0066
+    1.1897   -4.1013   -0.4206
+    1.2485   -3.3041   -0.1761
+
+</pre><pre class="codeinput">[X, nomVec, gaussCurv] = WME_torus(10, 5, 2)
+</pre><pre class="codeoutput">
+X =
+
+   -5.9815   -3.5068   -0.5107
+   -1.6551   -6.7571    0.4131
+   -6.4086   -2.8037   -0.1413
+    3.4986    6.0509    0.2046
+   -2.9341   -4.8036    1.8986
+   -5.6622   -4.0922   -0.2348
+    2.5149    6.2082   -1.0564
+   -6.4394   -1.3879    1.2168
+   -0.9221    2.9840    0.6912
+   -6.3242   -2.9077   -0.3950
+
+
+nomVec =
+
+   -0.8341   -0.4890   -0.2554
+   -0.2328   -0.9503    0.2066
+   -0.9139   -0.3998   -0.0706
+    0.4979    0.8612    0.1023
+   -0.1639   -0.2683    0.9493
+   -0.8049   -0.5817   -0.1174
+    0.3188    0.7870   -0.5282
+   -0.7758   -0.1672    0.6084
+    0.2770   -0.8966    0.3456
+   -0.8907   -0.4095   -0.1975
+
+
+gaussCurv =
+
+    0.0697
+    0.0703
+    0.0713
+    0.0712
+    0.0279
+    0.0711
+    0.0634
+    0.0602
+   -0.1502
+    0.0704
+
+</pre><h2 id="5">Contact</h2><p>Author: Yueqi Cao Email: <a href="mailto:bityueqi@gmail.com">bityueqi@gmail.com</a> Web: <a href="https://yueqihome.site">https://yueqihome.site</a></p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% WME_torus
+% Generate random points from 2-dim torus
+%
+%% Syntax
+% 
+% * |X = WME_torus(N)|
+% * |X = WME_torus(N, majorRad, minorRad)|
+% * |[X, nomVec] = WME_torus(N,...)|
+% * |[X, nomVec, gaussCurv] = WME_torus(N,...)|
+% * |[X, nomVec, gaussCurv, meanCurv] = WME_torus(N,...)|
+%
+%% Description
+%
+% * |X = WME_torus(N)| produces an |N*3| matrix |X| whose row vectors are
+% points on a torus with default major radius 4 and minor radius 0.5
+% * |X = WME_torus(N, majorRad, minorRad)| produces points but also specifies 
+% the major and minor radius of the torus
+% * |[X, nomVec] = WME_torus(N,...)| produces points |X| together with normal vectors
+% |nomVec|
+% * |[X, nomVec, gaussCurv] = WME_torus(N,...)| produces points |X|, normal vectors
+% |nomVec| and Gauss curvature |gaussCurv|
+% * |[X, nomVec, gaussCurv, meanCurv] = WME_torus(N,...)| produces points |X|,
+% normal vectors |nomVec|, Gauss curvature |gaussCurv|, and mean curvature
+% |meanCurv|
+%
+%% Example
+X = WME_torus(10)
+%% 
+[X, nomVec, gaussCurv] = WME_torus(10, 5, 2)
+%% Contact
+% Author: Yueqi Cao
+% Email: bityueqi@gmail.com
+% Web: <https://yueqihome.site>
+
+##### SOURCE END #####
+--></body></html>

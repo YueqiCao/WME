@@ -1,5 +1,5 @@
 %% WME_read_data
-% read point cloud data in various data types
+% Read point cloud data in various data types
 %
 % data = WME_read_data(filetype, filename) 
 %

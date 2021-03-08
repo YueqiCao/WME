@@ -1,5 +1,5 @@
 %% WME_orient_nom
-% orient normal vectors on (hypersurface) point clouds to get a consistent 
+% Orient normal vectors on (hypersurface) point clouds to get a consistent 
 % global normal vector field.
 %
 % nom = WME_orient_nom(X, nom) produces a consistent normal vector field

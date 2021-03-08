@@ -1,0 +1,163 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>WME_ellipsoid</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-03-08"><meta name="DC.source" content="WME_ellipsoid_tt.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>WME_ellipsoid</h1><!--introduction--><p>Generate random points from ellipsoids of various dimension</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#5">Contact</a></li></ul></div><h2 id="1">Syntax</h2><div><ul><li><tt>X = WME_ellipsoid(N, dim)</tt></li><li><tt>[X, nomVec] = WME_ellipsoid(N, dim)</tt></li><li><tt>[X, nomVec, meanCurv] = WME_ellipsoid(N, dim)</tt></li><li><tt>[X, ...] = WME_ellipsoid(..., name,value)</tt></li></ul></div><h2 id="2">Description</h2><div><ul><li><tt>X = WME_ellipsoid(N, dim)</tt> produces an <tt>N*(dim+1)</tt> matrix <tt>X</tt> whose row vectors are points on a <tt>dim</tt>-dimensional <b>unit sphere</b> embedded in a <tt>(dim+1)</tt> dimensional Euclidean space</li><li><tt>[X, nomVec] = WME_ellipsoid(N, dim)</tt> produces points <tt>X</tt> together with normal vectors <tt>nomVec</tt></li><li><tt>[X, nomVec, meanCurv] = WME_ellipsoid(N, dim)</tt> produces points <tt>X</tt>, normal vectors <tt>nomVec</tt>, and mean curvature <tt>meanCurv</tt> (for 2-dimensional surfaces it corresponds to <b>absolute mean curvature</b>)</li><li><tt>[X, ...] = WME_ellipsoid(..., name,value)</tt> produces points from general ellipsoids with parameters specified by name-value. The standard equation for a general ellipsoid is <img src="WME_ellipsoid_tt_eq15596645514269533647.png" alt="$x_1^2/a^2 + x_2^2/b^2 + x_3^2/c^2 + x_4^2/d^2 + x_5^2/e^2 = 1$">. The input format for name-value should be like: <tt>'a', 3, 'b', 2</tt> and so on.</li></ul></div><h2 id="3">Example</h2><pre class="codeinput">X = WME_ellipsoid(10, 1) <span class="comment">% points on a unit circle</span>
+</pre><pre class="codeoutput">
+X =
+
+    0.1371    0.9906
+   -1.0000    0.0059
+   -0.9447   -0.3280
+   -0.7024    0.7118
+   -0.6898    0.7240
+   -0.8998   -0.4363
+   -0.6583    0.7527
+   -0.8675   -0.4975
+    0.9909   -0.1348
+   -0.1788   -0.9839
+
+</pre><pre class="codeinput">[X, nomVec, meanCurv] = WME_ellipsoid(10, 3, <span class="string">'a'</span>, 5, <span class="string">'b'</span>, 4, <span class="string">'c'</span>, 3, <span class="string">'e'</span>, 2)
+</pre><pre class="codeoutput">
+X =
+
+    4.4932   -1.1910    0.8033    0.1792
+    4.4118   -0.3738    1.3774   -0.0436
+    1.5345   -3.3028   -1.3136   -0.1798
+   -1.3596    0.4208   -0.2444    0.9531
+    4.8307    0.4272   -0.7027   -0.0174
+    2.0439   -2.0337    0.5957   -0.7314
+   -4.8885   -0.6815   -0.1887    0.1054
+   -0.1380    3.7959   -0.6746   -0.2193
+    1.9252    1.1338   -1.3957   -0.7450
+   -1.0613    0.2409   -2.4241   -0.5463
+
+
+nomVec =
+
+    0.6438   -0.2667    0.3197    0.6420
+    0.7391   -0.0979    0.6410   -0.1826
+    0.1941   -0.6528   -0.4616   -0.5685
+   -0.0569    0.0275   -0.0284    0.9976
+    0.9165    0.1266   -0.3703   -0.0827
+    0.1090   -0.1695    0.0883   -0.9755
+   -0.8609   -0.1875   -0.0923    0.4639
+   -0.0166    0.7152   -0.2260   -0.6612
+    0.1003    0.0923   -0.2019   -0.9699
+   -0.0695    0.0247   -0.4410   -0.8945
+
+
+meanCurv =
+
+    0.9127
+    1.4262
+    0.8607
+    0.1225
+    1.6683
+    0.1697
+    1.3380
+    0.7452
+    0.1684
+    0.2627
+
+</pre><h2 id="5">Contact</h2><p>Author: Yueqi Cao Email: <a href="mailto:bityueqi@gmail.com">bityueqi@gmail.com</a> Web: <a href="https://yueqihome.site">https://yueqihome.site</a></p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% WME_ellipsoid
+% Generate random points from ellipsoids of various dimension 
+%
+%% Syntax
+% 
+% * |X = WME_ellipsoid(N, dim)|
+% * |[X, nomVec] = WME_ellipsoid(N, dim)|
+% * |[X, nomVec, meanCurv] = WME_ellipsoid(N, dim)|
+% * |[X, ...] = WME_ellipsoid(..., name,value)|
+%
+%% Description
+%
+% * |X = WME_ellipsoid(N, dim)| produces an |N*(dim+1)| matrix |X| whose row vectors are
+% points on a |dim|-dimensional *unit sphere* embedded in a |(dim+1)| dimensional Euclidean space
+% * |[X, nomVec] = WME_ellipsoid(N, dim)| produces points |X| together with normal vectors
+% |nomVec| 
+% * |[X, nomVec, meanCurv] = WME_ellipsoid(N, dim)| produces points |X|, normal vectors
+% |nomVec|, and mean curvature |meanCurv| (for 2-dimensional surfaces it corresponds to 
+% *absolute mean curvature*)
+% * |[X, ...] = WME_ellipsoid(..., name,value)| produces points from
+% general ellipsoids with parameters specified by name-value. The standard
+% equation for a general ellipsoid is 
+% $x_1^2/a^2 + x_2^2/b^2 + x_3^2/c^2 + x_4^2/d^2 + x_5^2/e^2 = 1$. 
+% The input format for name-value should be like: |'a', 3, 'b', 2| and so on.
+%% Example
+X = WME_ellipsoid(10, 1) % points on a unit circle
+%% 
+[X, nomVec, meanCurv] = WME_ellipsoid(10, 3, 'a', 5, 'b', 4, 'c', 3, 'e', 2)
+%% Contact
+% Author: Yueqi Cao
+% Email: bityueqi@gmail.com
+% Web: <https://yueqihome.site>
+##### SOURCE END #####
+--></body></html>

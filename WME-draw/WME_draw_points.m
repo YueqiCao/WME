@@ -1,5 +1,5 @@
 %% WME_draw_points
-% visualize point clouds using scatter(scatter3) function
+% Visualize point clouds using scatter(scatter3) function
 %
 % WME_draw_points(X) displays points at locations specified by the row
 % vectors of X. Inline functions scatter/scatter3 are used according to

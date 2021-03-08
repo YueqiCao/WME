@@ -1,0 +1,137 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>WME_orient_nom</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-03-08"><meta name="DC.source" content="WME_orient_nom_tt.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>WME_orient_nom</h1><!--introduction--><p>Orient normal vectors on (hypersurface) point clouds to get a consistent global normal vector field.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#5">References</a></li><li><a href="#6">Contact</a></li></ul></div><h2 id="1">Syntax</h2><div><ul><li><tt>nom = WME_orient_nom(X, nom)</tt></li><li><tt>nom = WME_orient_nom(X, nom, 'K', k)</tt></li></ul></div><h2 id="2">Description</h2><div><ul><li><tt>nom = WME_orient_nom(X, nom)</tt> produces a consistent normal vector field <tt>nom</tt> with the same size as point cloud <tt>X</tt></li></ul></div><div><ul><li><tt>nom = WME_orient_nom(X, nom, 'K', k)</tt> specifies the kNN paramter <tt>k</tt> when constructing the kNN graph. The default value is 11. Note that small <tt>k</tt> will yield disconnected graph while large <tt>k</tt> will increase the complexity</li></ul></div><h2 id="3">Example</h2><pre class="codeinput">p = WME_read_data(<span class="string">'ply'</span>,<span class="string">'bunny.ply'</span>);
+X = p.Location;
+[tgtBasis, nomBasis] = WME_tangent_spaces(X, 2);
+nom = zeros(p.Count,3);
+<span class="keyword">for</span> i = 1:p.Count
+    nom(i,:) = nomBasis(:,:,i)';
+<span class="keyword">end</span>
+WME_draw_points(X,<span class="string">'curv'</span>,X(:,3),<span class="string">'view'</span>,[0,90]);
+hold <span class="string">on</span>
+WME_draw_normals(X, nom)
+hold <span class="string">off</span>
+</pre><pre class="codeoutput">The point cloud consists of 35947 points sampled from 2 dim submanifold in 3 dim Euclidean space
+</pre><img vspace="5" hspace="5" src="WME_orient_nom_tt_01.png" alt=""> <pre class="codeinput">nom = WME_orient_nom(X, nom);
+WME_draw_points(X,<span class="string">'curv'</span>,X(:,3),<span class="string">'view'</span>,[0,90]);
+hold <span class="string">on</span>
+WME_draw_normals(X, -nom)
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="WME_orient_nom_tt_02.png" alt=""> <h2 id="5">References</h2><p>The algorithm is implemented from H.Hoppe etc.'s paper</p><p>Hugues Hoppe, Tony DeRose, Tom Duchamp, John McDonald, Werner Stuetzle. <i>Surface reconstruction from unorganized points.</i> ACM SIGGRAPH 1992 Proceedings, 71-78.</p><h2 id="6">Contact</h2><p>Author: Yueqi Cao Email: <a href="mailto:bityueqi@gmail.com">bityueqi@gmail.com</a> Web: <a href="https://yueqihome.site">https://yueqihome.site</a></p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% WME_orient_nom
+% Orient normal vectors on (hypersurface) point clouds to get a consistent 
+% global normal vector field.
+%
+%% Syntax
+%
+% * |nom = WME_orient_nom(X, nom)|
+% * |nom = WME_orient_nom(X, nom, 'K', k)|
+%
+%% Description
+%
+% * |nom = WME_orient_nom(X, nom)| produces a consistent normal vector field
+% |nom| with the same size as point cloud |X|
+%
+% * |nom = WME_orient_nom(X, nom, 'K', k)| specifies the kNN
+% paramter |k| when constructing the kNN graph. The default value is 11. Note that
+% small |k| will yield disconnected graph while large |k| will increase the
+% complexity
+%
+%% Example
+p = WME_read_data('ply','bunny.ply');
+X = p.Location;
+[tgtBasis, nomBasis] = WME_tangent_spaces(X, 2);
+nom = zeros(p.Count,3);
+for i = 1:p.Count
+    nom(i,:) = nomBasis(:,:,i)';
+end
+WME_draw_points(X,'curv',X(:,3),'view',[0,90]);
+hold on
+WME_draw_normals(X, nom)
+hold off
+%%
+nom = WME_orient_nom(X, nom);
+WME_draw_points(X,'curv',X(:,3),'view',[0,90]);
+hold on
+WME_draw_normals(X, -nom)
+hold off
+%% References
+% The algorithm is implemented from H.Hoppe etc.'s paper
+%
+% Hugues Hoppe, Tony DeRose, Tom Duchamp, John McDonald, Werner Stuetzle.
+% _Surface reconstruction from unorganized points._ ACM SIGGRAPH 1992 Proceedings, 71-78.
+%
+%% Contact
+% Author: Yueqi Cao
+% Email: bityueqi@gmail.com
+% Web: <https://yueqihome.site>
+##### SOURCE END #####
+--></body></html>
