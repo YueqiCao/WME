@@ -58,7 +58,7 @@ for i = 1:N
     [U,L,V] = svd(S,'econ');
     singValues = diag(L);
     [singValues, IndX] = sort(singValues,'descend');
-    V = V(IndX);
+    V = V(:,IndX);
     ratio = sum(singValues(1:intDim))/sum(singValues);
     if  ratio < 0.7
         warning('may improve intrinsic dimension estimation, ratio = %.2f', ratio);
