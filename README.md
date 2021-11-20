@@ -34,7 +34,7 @@ We also published tutorials for all WME functions. A complete list can be found 
 
 ## Cite 
 Please cite the reference:
-> Yueqi Cao, Didong Li, Huafei Sun, Amir Assadi, Shiqiang Zhang. _Efficient Weingarten Map and Curvature Estimation on Manifolds_ arXiv id: 1905.10725
+> Yueqi Cao, Didong Li, Huafei Sun, Amir Assadi, Shiqiang Zhang. _Efficient Weingarten Map and Curvature Estimation on Manifolds_ Mach Learn 110, 1319–1344 (2021). [https://doi.org/10.1007/s10994-021-05953-4](https://doi.org/10.1007/s10994-021-05953-4)
 
 ## Contact
 Email: bityueqi@gmail.com
